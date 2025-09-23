@@ -27,3 +27,20 @@ console.log(saludar)
 // console.log(saludar('Juan'))
 console.log(saludo('enrique'))
 console.log(saludo2('Pedro'))
+
+
+
+const crearMascota = ({ nombre, raza, edad = 0 }) => {
+
+    return {
+        nombre,
+        edad,
+        raza
+    }
+
+}
+
+const data = { nombre: 'Luna', raza: 'Pastor Alemán', color: 'Negro' }
+
+console.log(crearMascota(data))
+console.log(crearMascota({ edad: 3, nombre: 'Apolo', raza: 'Terrier' }))
