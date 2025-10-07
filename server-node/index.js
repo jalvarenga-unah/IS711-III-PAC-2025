@@ -1,6 +1,9 @@
 
 // mi primer servidor web con node js
 import { createServer } from 'node:http'
+import { loadEnvFile } from 'node:process';
+
+loadEnvFile() // carga las variables de entorno desde el archivo .env
 
 // 1. Crear el servidor
 // ya es mi servidor web
@@ -18,12 +21,17 @@ const app = createServer((req, res) => {
 
 })
 
-// 2. establecer un puerto
-const PORT = 3000
+// 2. establecer un puerto''
+
+//variables de entorno
+const PORT = process.env.PORT || 3000
 
 
 // 3. escuchar el servidor
 app.listen(PORT, () => {
+
+    const PORT = app.address().port // me retorna el puerto que está usando el servidor
+
     console.log('El servidor está en marcha en: ')
     console.log(`http://localhost:${PORT}`)
 })
