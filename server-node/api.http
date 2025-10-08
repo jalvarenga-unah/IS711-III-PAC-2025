@@ -1,0 +1,20 @@
+
+
+### Consulta de todas las tareas
+GET http://localhost:4321/todos
+
+### Consulta de una tarea específica
+GET http://localhost:4321/todos/abc123
+
+### Crear
+POST http://localhost:4321/todos
+Content-Type: application/json
+
+{
+  "title": "Nueva tarea",
+  "description": "Descripción de la nueva tarea"
+}
+
+
+### Eliminar
+DELETE http://localhost:4321/todos
