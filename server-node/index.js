@@ -22,7 +22,7 @@ const app = createServer((req, res) => {
 
                 case '/todos':
                     // res.writeHead(200, { 'Content-Type': 'application/json' });
-                    res.end('{"message":"se obtuvieron todas las tareas"') // finalizar la petición
+                    res.end('{"message":"se obtuvieron todas las tareas"}') // finalizar la petición
                     break;
                 case '/todos/abc123':
                     res.writeHead(200, { 'Content-Type': 'application/json' });
@@ -36,10 +36,29 @@ const app = createServer((req, res) => {
 
             break;
         case 'POST':
-            console.log(req.body)
-            console.log('El usuario está creando información')
-            res.writeHead(200, { 'Content-Type': 'application/json' });
-            res.end('{"message":"se creó una nueva tarea"}') // finalizar la petición
+            let body = ''
+
+            // listener de eventos
+            req.on('data', (chunk) => {
+                body += chunk.toString() // convierto el chunk a string y lo voy concatenando
+            })
+
+            // evento que indica que ya se recibió toda la información
+            req.on('end', () => {
+                try {
+                    req.body = JSON.parse(body) // transformalo a un json
+                }
+                catch {
+                    req.body = null
+                }
+
+                console.log(req.body)
+                console.log('El usuario está creando información')
+                res.writeHead(200, { 'Content-Type': 'application/json' });
+                res.end('{"message":"se creó una nueva tarea"}') // finalizar la petición
+            })
+
+
             break;
         default:
             res.writeHead(405, { 'Content-Type': 'application/json' });
