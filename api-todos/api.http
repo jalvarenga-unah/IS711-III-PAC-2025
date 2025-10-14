@@ -1,0 +1,25 @@
+### Listar todas las tareas
+GET http://localhost:3000/todos?completed=0&fecha=2025-10-10
+
+### Listar una tarea por id
+GET http://localhost:3000/todos/1
+
+### Crear una tarea
+POST http://localhost:3000/todos
+Content-Type: application/json
+
+{
+    "title":"Test",
+    "description":null,
+    "completed": false
+}
+
+### Actualizar una tarea
+PUT http://localhost:3000/todos/10
+Content-Type: application/json
+
+{
+    "title":"Modificacion",
+    "description": "Pendiente de desplegar a prod",
+    "completed": false
+}
