@@ -1,6 +1,7 @@
 import express from 'express'; // equivalente al createServer de node:http
-import { appDistribution } from 'firebase-functions/alerts';
 import { loadEnvFile } from 'node:process';
+
+import todosRouter from './routes/todos.routes.js'
 
 loadEnvFile() // carga las variables de entorno desde el archivo .env
 
@@ -14,35 +15,8 @@ app.get('/', (req, res) => {
     res.send('Hola mundo desde express!')
 })
 
-app.get('/todos', (req, res) => {
-    res.json({ "todos": [], "queries": req.query })
-})
+app.use('/todos', todosRouter)
 
-app.get('/todos/:id', (req, res) => {
-
-    const { id } = req.params
-    // const id = req.params.id
-
-    res.json({
-        todo: id,
-        queries: req.query
-    })
-})
-
-app.post('/todos', (req, res) => {
-    res.status(201).json({
-        success: true,
-        data: req.body || null,
-        foo: 'bar'
-    })
-})
-
-app.put('/todos/:id', (req, res) => {
-    res.json({
-        success: true,
-        message: 'modificado correctaemnte'
-    })
-})
 
 app.use((req, res) => {
     res.status(404).json({
