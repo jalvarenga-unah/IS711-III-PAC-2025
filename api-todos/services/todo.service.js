@@ -12,6 +12,7 @@ export class TodoService {
 
     // porque no necesitaria una instancia de la clase
     static async getAllTodos() {
+
         return todos
     }
 
@@ -22,6 +23,17 @@ export class TodoService {
             return todo.id === id
         })
 
+    }
+
+    static async createTodo({ title, descripcion, completed }) {
+
+
+        const id = Date.now() // la hora actual en milisegundos
+        const newTodo = { id, title, descripcion, completed }
+
+        todos.push(newTodo)
+
+        return newTodo
     }
 
 }

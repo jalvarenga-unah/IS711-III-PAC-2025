@@ -9,9 +9,9 @@ POST http://localhost:3000/todos
 Content-Type: application/json
 
 {
-    "title":"Test",
+    "title":null,
     "description":null,
-    "completed": false
+    "completed": null
 }
 
 ### Actualizar una tarea
