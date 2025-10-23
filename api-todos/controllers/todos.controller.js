@@ -1,12 +1,11 @@
-import { send } from 'vite'
+
 import { sendResponse } from '../helpers/send_response.js'
 import { validatetodo } from '../schemas/todo.schema.js'
 import { TodoService } from '../services/todo.service.js'
 
-export const getAllTodos = async (req, res) => {
+export const getAllTodos = async (req, res, next) => {
 
     // el uso del servicio para obtener los datos
-
     try {
 
         const todos = await TodoService.getAllTodos()
@@ -15,7 +14,8 @@ export const getAllTodos = async (req, res) => {
 
     } catch (e) {
 
-        sendResponse({ res, message: e.message, data: null, statusCode: 500 })
+        next(e)
+        // sendResponse({ res, message: e.message, data: null, statusCode: 500 })
 
         // res.status(500).json({
         //     success: false,

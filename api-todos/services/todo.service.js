@@ -12,7 +12,7 @@ export class TodoService {
 
     // porque no necesitaria una instancia de la clase
     static async getAllTodos() {
-
+        throw new Error('Error intencionado')
         return todos
     }
 
@@ -26,7 +26,6 @@ export class TodoService {
     }
 
     static async createTodo(todo) {
-
 
         const id = Date.now() // la hora actual en milisegundos
         const newTodo = { id, ...todo }
