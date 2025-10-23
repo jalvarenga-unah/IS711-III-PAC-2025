@@ -25,11 +25,11 @@ export class TodoService {
 
     }
 
-    static async createTodo({ title, descripcion, completed }) {
+    static async createTodo(todo) {
 
 
         const id = Date.now() // la hora actual en milisegundos
-        const newTodo = { id, title, descripcion, completed }
+        const newTodo = { id, ...todo }
 
         todos.push(newTodo)
 

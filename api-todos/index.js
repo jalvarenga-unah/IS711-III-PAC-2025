@@ -2,6 +2,9 @@ import express from 'express'; // equivalente al createServer de node:http
 import { loadEnvFile } from 'node:process';
 
 import todosRouter from './routes/todos.routes.js'
+import { config } from 'zod'
+import { es } from "zod/locales"
+config(es())
 
 loadEnvFile() // carga las variables de entorno desde el archivo .env
 

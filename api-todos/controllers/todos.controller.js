@@ -1,4 +1,6 @@
+import { send } from 'vite'
 import { sendResponse } from '../helpers/send_response.js'
+import { validatetodo } from '../schemas/todo.schema.js'
 import { TodoService } from '../services/todo.service.js'
 
 export const getAllTodos = async (req, res) => {
@@ -54,8 +56,23 @@ export const createTodo = async (req, res) => {
     // 1. obtener los datos del body 
     // 1.2 validar los datos, para que cumplan con la lógica del negocio
 
+    // const { title, description, completed } = req.body
+    // if (typeof title !== 'string') {
+    //     return sendResponse({ res, message: "el titulo debe ser un sttring", statusCode: 400 })
+    // }
+
+    // if (title.length < 5) {
+    //     return sendResponse({ res, message: "el titulo debe tener al menos 5 caracteres", statusCode: 400 })
+    // }
+
+    const { success, error, data: safeData } = validatetodo(req.body)
+
+    if (!success) {
+        return sendResponse({ res, message: "que algo salió mal", data: error.issues, statusCode: 400 })
+    }
+
     // 2. guardar en la BBDD
-    const data = await TodoService.createTodo(req.body)
+    const data = await TodoService.createTodo(safeData)
 
     // 3. responder al cliente
 
