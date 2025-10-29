@@ -1,4 +1,4 @@
-import todos from '../db/local/todos.json' with { type: 'json' }
+import { pool } from '../db/mysql/db.js'
 // const todos = []
 
 // const getAllTodos = async () => {
@@ -12,27 +12,27 @@ export class TodoService {
 
     // porque no necesitaria una instancia de la clase
     static async getAllTodos() {
-        throw new Error('Error intencionado')
-        return todos
+
+        const [results] = await pool.query("SELECT *FROM todos")
+
+        return results
     }
 
     static async getTodoById(id) {
 
         // return todos.find( todo => todo.id === id ) 
-        return todos.find((todo) => {
-            return todo.id === id
-        })
+        const [results] = await pool.query(`SELECT *FROM todos where id = ?  `, [id])
 
+        return results
     }
 
     static async createTodo(todo) {
 
-        const id = Date.now() // la hora actual en milisegundos
-        const newTodo = { id, ...todo }
+        const { title, description, completed } = todo
 
-        todos.push(newTodo)
+        await pool.query(`insert into todos (id, title, description, completed) values 
+                    ( UUID(), ?, ? , ? ) `, [title, description, completed])
 
-        return newTodo
     }
 
 }

@@ -2,15 +2,15 @@
 GET http://localhost:3000/todos?completed=0&fecha=2025-10-10
 
 ### Listar una tarea por id
-GET http://localhost:3000/todos/1
+GET http://localhost:3000/todos/80a996dc-b520-11f0-8c5c-2ea2e8af62fb
 
 ### Crear una tarea
 POST http://localhost:3000/todos
 Content-Type: application/json
 
 {
-    "title":"Test de creación",
-    "description":null,
+    "title":"Segunda tarea creada",
+    "description":"Probando los datos de retorno del query",
     "completed": false
 }
 
