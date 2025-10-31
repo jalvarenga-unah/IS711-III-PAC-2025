@@ -9,8 +9,8 @@ POST http://localhost:3000/todos
 Content-Type: application/json
 
 {
-    "title":"Segunda tarea creada",
-    "description":"Probando los datos de retorno del query",
+    "title":"Tercera tarea creada",
+    "description":"Creada con named params",
     "completed": false
 }
 

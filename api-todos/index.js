@@ -5,6 +5,7 @@ import todosRouter from './routes/todos.routes.js'
 import { config } from 'zod'
 import { es } from "zod/locales"
 import { handleError } from './middlewares/handleError.js';
+import authRoutes from './routes/auth.routes.js';
 
 config(es())
 
@@ -22,6 +23,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/todos', todosRouter)
+app.use('/auth', authRoutes)
 
 
 app.use((req, res) => {

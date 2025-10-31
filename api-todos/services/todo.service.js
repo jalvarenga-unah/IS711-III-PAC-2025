@@ -21,17 +21,17 @@ export class TodoService {
     static async getTodoById(id) {
 
         // return todos.find( todo => todo.id === id ) 
-        const [results] = await pool.query(`SELECT *FROM todos where id = ?  `, [id])
+        const [results] = await pool.query(`SELECT *FROM todos where id = :id `, { id })
 
         return results
     }
 
     static async createTodo(todo) {
 
-        const { title, description, completed } = todo
+        // const { title, description, completed } = todo
 
         await pool.query(`insert into todos (id, title, description, completed) values 
-                    ( UUID(), ?, ? , ? ) `, [title, description, completed])
+                    ( UUID(), :title, :description , :completed ) `, { ...todo })
 
     }
 
