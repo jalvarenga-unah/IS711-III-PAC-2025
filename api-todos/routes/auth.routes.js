@@ -9,9 +9,13 @@ const authRoutes = Router()
 // endpoint para hacer login
 authRoutes.post('/login', login)
 // endpoint para hacer cambiar contraseña
-authRoutes.put('/change-password', (req, res) => { })
+authRoutes.put('/change-password', (req, res) => {
+
+    res.json(req.headers.authorization)
+
+})
 // endpoint para hacer recuperar contraseña
-authRoutes.post('/change-password', (req, res) => { })
+authRoutes.post('/recover-password', (req, res) => { })
 
 
 export default authRoutes

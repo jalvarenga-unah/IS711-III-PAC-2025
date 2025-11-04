@@ -23,3 +23,23 @@ Content-Type: application/json
     "description": "Pendiente de desplegar a prod",
     "completed": false
 }
+
+### Login
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "email":"jealvarengar@unah.edu.hn",
+    "password": "Pendiente de desplegar a prod"
+}
+
+
+### Login
+PUT http://localhost:3000/auth/change-password
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMwZGI3NTAxLWI0NTYtMTFmMC04ZjgzLTJlYTJlOGFmNjJmYiIsImVtYWlsIjoiamVhbHZhcmVuZ2FyQHVuYWguZWR1LmhuIiwiaWF0IjoxNzYyMjk5MzQ0LCJleHAiOjE3NjIyOTk1MjR9.I7rXOJjZ44DgilzQwsqYyD4HzkPPLiV8jiqJ4Bep27A
+
+{
+    "password":"jealvarengar@unah.edu.hn",
+    "confirm_password": "Pendiente de desplegar a prod"
+}

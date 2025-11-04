@@ -1,7 +1,7 @@
 
-import { AuthService } from "../services/auth.service"
+import { AuthService } from "../services/auth.service.js"
 import { sendResponse } from "../helpers/send_response.js"
-
+import jwt from 'jsonwebtoken'
 
 export const login = async (req, res) => {
 
@@ -18,6 +18,22 @@ export const login = async (req, res) => {
 
     // 2.1. verificar que el usuario esté activo
     // 3. verificar si debe cambiar contraseña
+    if (user.must_change_password) {
+
+        // un "pre-login"
+        const token = jwt.sign({
+            id: user.id,
+            email: user.email
+        }, process.env.JWT_SECRET_KEY, { expiresIn: '3m' });
+
+        return sendResponse({
+            res, message: 'Debe cambiar la contraseña', data: {
+                must_change_password: true,
+                token
+            }
+        })
+
+    }
 
 
 
@@ -29,6 +45,7 @@ export const login = async (req, res) => {
 
     // 6. respondemos al usuario
 
+    return sendResponse({ res, message: 'Bienvenido', statusCode: 200, data: user })
 
 
 }
