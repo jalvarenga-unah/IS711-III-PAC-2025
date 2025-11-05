@@ -34,12 +34,12 @@ Content-Type: application/json
 }
 
 
-### Login
+### Cambio de contraseña
 PUT http://localhost:3000/auth/change-password
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMwZGI3NTAxLWI0NTYtMTFmMC04ZjgzLTJlYTJlOGFmNjJmYiIsImVtYWlsIjoiamVhbHZhcmVuZ2FyQHVuYWguZWR1LmhuIiwiaWF0IjoxNzYyMjk5MzQ0LCJleHAiOjE3NjIyOTk1MjR9.I7rXOJjZ44DgilzQwsqYyD4HzkPPLiV8jiqJ4Bep27A
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMwZGI3NTAxLWI0NTYtMTFmMC04ZjgzLTJlYTJlOGFmNjJmYiIsImlhdCI6MTc2MjM4NTU0MSwiZXhwIjoxNzYyMzg5MTQxfQ.ovlSbL56RZR-FwsKeS6RiRgIZc8k2ZKzCYLK_Rh6SPI
 
 {
-    "password":"jealvarengar@unah.edu.hn",
-    "confirm_password": "Pendiente de desplegar a prod"
+    "password":"Unah1234*",
+    "confirm_password": "Unah1234*"
 }

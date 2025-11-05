@@ -2,6 +2,8 @@
 import { AuthService } from "../services/auth.service.js"
 import { sendResponse } from "../helpers/send_response.js"
 import jwt from 'jsonwebtoken'
+import bcrypt from "bcrypt"
+
 
 export const login = async (req, res) => {
 
@@ -22,9 +24,8 @@ export const login = async (req, res) => {
 
         // un "pre-login"
         const token = jwt.sign({
-            id: user.id,
-            email: user.email
-        }, process.env.JWT_SECRET_KEY, { expiresIn: '3m' });
+            id: user.id
+        }, process.env.JWT_SECRET_KEY, { expiresIn: '1h' });
 
         return sendResponse({
             res, message: 'Debe cambiar la contraseña', data: {
@@ -36,10 +37,9 @@ export const login = async (req, res) => {
     }
 
 
-
-
-
     // 4. verificar que la contraseña enviada, sea correcta
+
+
 
     // 5. generar un token de sesión
 
@@ -47,5 +47,37 @@ export const login = async (req, res) => {
 
     return sendResponse({ res, message: 'Bienvenido', statusCode: 200, data: user })
 
+
+}
+
+export const changePassword = async (req, res) => {
+
+    const { authorization } = req.headers
+    const { password, confirm_password } = req.body
+
+    const [_, token] = authorization.split(' ')
+
+    try {
+        const { id } = jwt.verify(token, process.env.JWT_SECRET_KEY)
+
+        if (password != confirm_password) {
+            return sendResponse({ res, message: 'Las contraseñas no son iguales', statusCode: 400 })
+        }
+
+        if (password.length < 8) {
+            return sendResponse({ res, message: 'La contraseña es muy corta', statusCode: 400 })
+        }
+
+        //TODO: revisar porque no genera el hash
+        const hash = await bcrypt.hash(password, process.env.BCRYPT_SALT)
+
+        console.log(hash)
+
+        await AuthService.changePassword(id, hash)
+
+        return sendResponse({ res, message: 'Constraseña cambiada correctamente', statusCode: 200, })
+    } catch (e) {
+        return sendResponse({ res, message: e, statusCode: 400 })
+    }
 
 }

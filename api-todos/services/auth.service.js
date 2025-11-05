@@ -12,5 +12,13 @@ export class AuthService {
 
     }
 
+    static async changePassword(id, password) {
+
+        const [result] = await pool.query('UPDATE users SET password_hash = :password WHERE id = UUID_TO_BIN(:id)', { id, password })
+
+        return result
+
+
+    }
 
 }
