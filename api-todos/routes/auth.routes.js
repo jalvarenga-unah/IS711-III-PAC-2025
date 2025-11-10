@@ -1,6 +1,7 @@
 
 import { Router } from 'express'
 import { login, changePassword } from '../controllers/auth.controller.js'
+import { isAuth } from '../middlewares/isAuth.js'
 
 
 
@@ -9,7 +10,7 @@ const authRoutes = Router()
 // endpoint para hacer login
 authRoutes.post('/login', login)
 // endpoint para hacer cambiar contraseña
-authRoutes.put('/change-password', changePassword)
+authRoutes.put('/change-password', isAuth, changePassword)
 // endpoint para hacer recuperar contraseña
 authRoutes.post('/recover-password', (req, res) => { })
 

@@ -1,16 +1,18 @@
 import { sendResponse } from "../helpers/send_response.js";
-
-//TODO: aplicar mecaniscmo real de autenticación
+import jwt from 'jsonwebtoken'
 
 export const isAuth = async (req, res, next) => {
+    try {
+        const { authorization } = req.headers
 
-    // setTimeout(() => {
-    //     const r = Math.floor(Math.random() * 10);
-    //     console.log(r)
-    //     if (r % 2 != 0) {
-    //         return sendResponse({ res, message: 'debe iniciar sesión', statusCode: 401 })
-    //     }
-    //     next() // sin esto, no puede continuar con el flujo
-    // }, 500)
-    next()
+        const [_, token] = authorization.split(' ')
+        const { id } = jwt.verify(token, process.env.JWT_SECRET_KEY)
+
+        req.headers.id = id
+
+        next()
+    } catch (error) {
+        return sendResponse({ res, message: 'Debe iniciar sesión', statusCode: 401 })
+    }
+
 }

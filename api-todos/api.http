@@ -7,6 +7,7 @@ GET http://localhost:3000/todos/80a996dc-b520-11f0-8c5c-2ea2e8af62fb
 ### Crear una tarea
 POST http://localhost:3000/todos
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMwZGI3NTAxLWI0NTYtMTFmMC04ZjgzLTJlYTJlOGFmNjJmYiIsIm5hbWUiOiJKdWFuIEFsdmFyZW5nYSIsImlhdCI6MTc2MjgxODUwMywiZXhwIjoxNzk0Mzc2MTAzfQ.fQ0-X7afDRYCszHsDBQWikfEPVbsqE6KEOgpJaJZZr8
 
 {
     "title":"Tercera tarea creada",
@@ -30,14 +31,14 @@ Content-Type: application/json
 
 {
     "email":"jealvarengar@unah.edu.hn",
-    "password": "Pendiente de desplegar a prod"
+    "password": "Unah1234*"
 }
 
 
 ### Cambio de contraseña
 PUT http://localhost:3000/auth/change-password
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMwZGI3NTAxLWI0NTYtMTFmMC04ZjgzLTJlYTJlOGFmNjJmYiIsImlhdCI6MTc2MjM4NTU0MSwiZXhwIjoxNzYyMzg5MTQxfQ.ovlSbL56RZR-FwsKeS6RiRgIZc8k2ZKzCYLK_Rh6SPI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMwZGI3NTAxLWI0NTYtMTFmMC04ZjgzLTJlYTJlOGFmNjJmYiIsImlhdCI6MTc2MjgxNjMyOSwiZXhwIjoxNzk0MzczOTI5fQ.lDKu-c283LKVujvTqOJPtBve1eocTjAfNgd3Zy7mYoM
 
 {
     "password":"Unah1234*",
