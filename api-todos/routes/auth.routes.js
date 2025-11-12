@@ -1,6 +1,6 @@
 
 import { Router } from 'express'
-import { login, changePassword } from '../controllers/auth.controller.js'
+import { login, changePassword, sendEmail } from '../controllers/auth.controller.js'
 import { isAuth } from '../middlewares/isAuth.js'
 
 
@@ -12,7 +12,7 @@ authRoutes.post('/login', login)
 // endpoint para hacer cambiar contraseña
 authRoutes.put('/change-password', isAuth, changePassword)
 // endpoint para hacer recuperar contraseña
-authRoutes.post('/recover-password', (req, res) => { })
+authRoutes.post('/recover-password', sendEmail)
 
 
 export default authRoutes

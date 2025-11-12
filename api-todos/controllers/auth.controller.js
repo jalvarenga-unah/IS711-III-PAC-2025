@@ -4,6 +4,7 @@ import { sendResponse } from "../helpers/send_response.js"
 import jwt from 'jsonwebtoken'
 // import bcrypt from "bcrypt"
 import argon2 from 'argon2'
+import { Resend } from 'resend';
 
 
 export const login = async (req, res, next) => {
@@ -87,5 +88,26 @@ export const changePassword = async (req, res) => {
     } catch (e) {
         return sendResponse({ res, message: e, statusCode: 400 })
     }
+
+}
+
+export const sendEmail = async (req, res) => {
+
+    const resend = new Resend(process.env.RESEND_API_KEY);
+
+    const { data, error } = await resend.emails.send({
+        from: 'UNAH-Cortés <noresponder@esshn.com>',
+        to: ['jealvarengar@unah.edu.hn'],
+        subject: 'Hello World',
+        html: '<strong>Mi primer correo enviado!</strong>',
+    });
+
+
+    return sendResponse({
+        res,
+        message: 'SE envió un correo con instrucciones para reestablecer la contraseña',
+        statusCode: 200,
+        data
+    })
 
 }
