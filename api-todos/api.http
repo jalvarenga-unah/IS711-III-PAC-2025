@@ -31,19 +31,24 @@ Content-Type: application/json
 
 {
     "email":"jealvarengar@unah.edu.hn",
-    "password": "Unah1234*"
+    "password": "abc1234**"
 }
 
 
 ### Cambio de contraseña
 PUT http://localhost:3000/auth/change-password
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMwZGI3NTAxLWI0NTYtMTFmMC04ZjgzLTJlYTJlOGFmNjJmYiIsImlhdCI6MTc2MjgxNjMyOSwiZXhwIjoxNzk0MzczOTI5fQ.lDKu-c283LKVujvTqOJPtBve1eocTjAfNgd3Zy7mYoM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMwZGI3NTAxLWI0NTYtMTFmMC04ZjgzLTJlYTJlOGFmNjJmYiIsImlhdCI6MTc2Mjk5MDgyMiwiZXhwIjoxNzYyOTkxNDIyfQ.AZiiu-spgFhZAna-5uDGnVof95pUqCCXHOv6j75nmb8
 
 {
-    "password":"Unah1234*",
-    "confirm_password": "Unah1234*"
+    "password":"abc1234**",
+    "confirm_password": "abc1234**"
 }
 
 ### Recuperar contraseña
 POST http://localhost:3000/auth/recover-password
+Content-Type: application/json
+
+{
+    "email": "jealvarengar@unah.edu.hn"
+}
